@@ -12,7 +12,7 @@ function readyNow() {
 	$('#addEmployee').on('click', addNewEmployee);
 	$('.employeeList').on('click', 'button', function() {
 		$(this).parent().parent().remove();
-		$('#monthlyCalc').text(calculateTotal());
+		updateMonthly();
 	});
 }
 
@@ -48,7 +48,11 @@ function addNewEmployee() {
 	dark ^= true;
 	idCounter++;
 	// commaDisplay($('#employeeSalary').val());
-	$('#monthlyCalc').text(calculateTotal());
+	updateMonthly();
+}
+
+function updateMonthly() {
+	$('#monthlyCalc').text(Math.round(calculateTotal() * 100) / 100);
 }
 
 function calculateTotal() {
