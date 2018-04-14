@@ -1,0 +1,67 @@
+body {
+    font-family: sans-serif;
+}
+thead {
+    background-color: #cccccc;
+}
+tfoot {
+    background-color: #cccccc;
+}
+input {
+    margin-left: auto;
+    margin-right: auto;
+}
+button {
+    float: right;
+}
+table {
+    width: 100%;
+}
+thead, tbody, tfoot {
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+tr.dark {
+    background-color: #ececec;
+}
+th, td {
+    padding: 5px;
+    border: 1px;
+    margin: 0px;
+    border-color: black;
+    text-align: left;
+}
+#appContainer {
+    margin: auto;
+    max-width: 800px;
+}
+#appTitle {
+    font-style: normal;
+    width: 100%;
+    background-color: #606060;
+    color: #ececec;
+    text-align: center;
+    padding: 30px;
+    border: 0px;
+    margin: 0px;
+}
+#appContent {
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.appHeader {
+    text-align: left;
+    margin-top: 50px;
+}
+#monthlyTotal {
+    color: #606060;
+    text-align: right;
+}
+/* .employeeList {
+    margin: 0px;
+    border: 1px;
+    padding: 0px;
+    border-style: solid;
+} */

@@ -7,9 +7,41 @@
     <script src="jquery-3.3.1.min.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Document</title>
+    <title>Salary Calculator</title>
 </head>
-<body>
-    
+<body align="center">
+    <div id="appContainer">
+        <h1 id="appTitle">Salary Calculator</h1>
+        <div id="appContent">
+            <h2 id="addHeader" class="appHeader">Add Employee</h2>
+            <input id="employeeFirstName" class="employeeForm" type="text" placeholder="First Name">
+            <input id="employeeLastName" class="employeeForm" type="text" placeholder="Last Name">
+            <input id="employeeID" class="employeeForm" type="number" placeholder="ID">
+            <input id="employeeTitle" class="employeeForm" type="text" placeholder="Title">
+            <input id="employeeSalary" class="employeeForm" type="number" placeholder="Annual Salary"><br>
+            <button id="addEmployee" class="employeeForm">Submit</button>
+            <h2 id="employeeHeader" class="appHeader">Employees</h2>
+            <table id="employeeTable" class="employeeList">
+                <thead id="tableHeader" class="employeeList">
+                    <tr class="employeeList">
+                        <th id="thFirstName" class="employeeList">First Name</th>
+                        <th id="thLastName" class="employeeList">Last Name</th>
+                        <th id="thID" class="employeeList">ID</th>
+                        <th id="thTitle" class="employeeList">Title</th>
+                        <th id="thAnnualSalary" class="employeeList">Annual Salary</th>
+                        <th id="thDelete" class="employeeList">Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody" class="employeeList">
+
+                </tbody>
+                <tfoot id="tableFooter" class="employeeList">
+                    <tr class="employeeList" colspan="5">
+                    </tr>
+                </tfoot>
+            </table>
+            <h2 id="monthlyTotal" class="appHeader">Total Monthly: $<span id="monthlyCalc">0</span></h2>
+        </div>
+    </div>
 </body>
 </html>
