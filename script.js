@@ -1,7 +1,7 @@
 console.log('js');
 
-let dark = false;
 let idCounter = 0;
+let empList = [];
 
 $(document).ready(readyNow);
 
@@ -11,6 +11,14 @@ function readyNow() {
 	// Create event handlers
 	$('#addEmployee').on('click', addNewEmployee);
 	$('.employeeList').on('click', 'button', function() {
+		let deletion = empList.indexOf($(this).attr('id'));
+		let newList = [];
+		for (let i = 0; i < empList.length; i++) {
+			if (i !== deletion) {
+				newList.push(empList[i]);
+			}
+		}
+		empList = newList;
 		$(this).parent().parent().remove();
 		updateMonthly();
 	});
@@ -28,24 +36,18 @@ function addNewEmployee() {
 	if (isFormFilled() == false) {
 		return null;
 	}
-	let backgroundColor;
-	if (dark) {
-		backgroundColor = 'dark';
-	} else {
-		backgroundColor = 'light';
-	}
 
 	$('#tableBody').append(
-		'<tr id="employee' + idCounter + '" class="employeeList ' + backgroundColor + '">' +
-			'<td class="employeeListFirstName' + idCounter + '">' + $('#employeeFirstName').val() + '</td>' +
-			'<td class="employeeListLastName' + idCounter + '">' + $('#employeeLastName').val() + '</td>' +
-			'<td class="employeeListID' + idCounter + '">' + $('#employeeID').val() + '</td>' +
-			'<td class="employeeListTitle' + idCounter + '">' + $('#employeeTitle').val() + '</td>' +
-			'<td class="employeeListSalary' + idCounter + '">' + commaDisplay($('#employeeSalary').val()) + '</td>' +
-			'<td class="employeeDelete"><button class="deleteButton">Delete</button></td>' +
+		'<tr id="emp' + idCounter + '" class="employeeList">' +
+			'<td class="employeeFirstName">' + $('#employeeFirstName').val() + '</td>' +
+			'<td class="employeeLastName">' + $('#employeeLastName').val() + '</td>' +
+			'<td class="employeeID">' + $('#employeeID').val() + '</td>' +
+			'<td class="employeeTitle">' + $('#employeeTitle').val() + '</td>' +
+			'<td class="employeeSalary">' + commaDisplay($('#employeeSalary').val()) + '</td>' +
+			'<td class="employeeDelete"><button id="' + idCounter + '" class="deleteButton">Delete</button></td>' +
 		'</tr>'
 	);
-	dark ^= true;
+	empList.push(String(idCounter));
 	idCounter++;
 	// commaDisplay($('#employeeSalary').val());
 	updateMonthly();
@@ -53,16 +55,19 @@ function addNewEmployee() {
 
 function updateMonthly() {
 	$('#monthlyCalc').text(Math.round(calculateTotal() * 100) / 100);
+	if (parseInt(calculateTotal()) > 20000) {
+		$('#monthlyCalc').css('background-color', 'red');
+	} else {
+		$('#monthlyCalc').css('background-color', 'lightGreen');
+	}
 }
 
 function calculateTotal() {
 	let total = 0;
-	for (let i = 0; i < idCounter; i++) {
-		if ($('.employeeListSalary' + i).html() != undefined) {
-			total += commaRemove($('.employeeListSalary' + i).html());
-		}
+	for (let i = 0; i < empList.length; i++) {
+		total += commaRemove(String($('#emp' + empList[i]).children('.employeeSalary').text()));
 	}
-	return total / 12;
+	return (total / 12);
 }
 
 function commaRemove(quantity) {
